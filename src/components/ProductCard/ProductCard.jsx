@@ -4,7 +4,6 @@ import { BsFillCartPlusFill } from 'react-icons/bs';
 
 function ProductCard({ data }) {
   const { name, photo, price, brand, description, id, updatedAt } = data;
-  console.log('Rendering ProductCard');
 
   return (
     <section className="productCard">
