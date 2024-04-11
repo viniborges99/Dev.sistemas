@@ -1,0 +1,25 @@
+.header{
+  background-color: #0F52BA;
+  position: fixed;
+  width: 100%;
+  z-index: 1;
+  
+}
+.header > div{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  
+}
+h2{
+  color: white;
+  font-weight: 300;
+  font-size: 20px;
+  line-height: 19px;
+}
+h2 > span{
+  font-size: 40px;
+  font-weight: 600;
+  line-height: 19px;
+}
