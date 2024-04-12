@@ -17,10 +17,10 @@ function ProductCard({ data }) {
   const { name, photo,  description } = data;
   const price = parseFloat(data.price);
 
-  const {cartItem, setCartItem} = useContext(AppContext);
+  const {cartItems, setCartItems} = useContext(AppContext);
 
   const handleAddCart = () => {
-    setCartItem([...cartItem, data]);
+    setCartItems([...cartItems, data]);
   };
   
 

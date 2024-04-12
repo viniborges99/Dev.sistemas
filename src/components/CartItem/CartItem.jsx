@@ -1,9 +1,9 @@
 import React from 'react';
 import { CiCircleRemove } from 'react-icons/ci';
-import './CartItem.css';
 import PropTypes from 'prop-types';
 import { useContext } from 'react';
 import AppContext from '../context/AppContext';
+import './CartItem.css';
 
 function CartItem({ data }) {
   const { id, name, photo, price } = data;
@@ -18,8 +18,8 @@ function CartItem({ data }) {
     <section className="cart-item">
       <img src={photo} alt="imagem do produto" className="cart-item-image" />
       <div className="cart-item-content">
-        <h3 className="cart-item-title">{name}</h3>
-        <h3 className="cart-item-price">R$ {price.toFixed(2)}</h3>
+        <p className="cart-item-title">{name}</p>
+        <p className="cart-item-price">R$ {price.toFixed(2)}</p>
         <button type="button" className="button__remove-item" onClick={handleRemoveItem}>
           <CiCircleRemove />
         </button>
