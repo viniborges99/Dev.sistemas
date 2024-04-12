@@ -1,25 +1,45 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { BsFillCartPlusFill } from 'react-icons/bs';
+import { motion } from 'framer-motion';
+import{ProductCardContainer,
+  CardContainer,
+  CardImage,
+  CardInfos,
+  CardPrice,
+  CardTitle,
+  ButtonAddCard,
+  CardDescription} from './styles.js';
+import AppContext from '../context/AppContext.js';
+
 
 function ProductCard({ data }) {
-  const { name, photo, price, brand, description, id, updatedAt } = data;
+  const { name, photo,  description } = data;
+  const price = parseFloat(data.price);
+
+  const {cartItem, setCartItem} = useContext(AppContext);
+
+  const handleAddCart = () => {
+    setCartItem([...cartItem, data]);
+  };
+  
 
   return (
-    <section className="productCard">
-      <img src={photo} alt="product" className="card__image" />
-      <div className="card__infos">
-        <h2 className="card__title">{name}</h2>
-        <p className="card__brand">Brand: {brand}</p>
-        <p className="card__description">Description: {description}</p>
-        <p className="card__price">Price: R$ {price}</p>
-        <p className="card__id">ID: {id}</p>
-        <p className="card__updatedAt">Updated At: {updatedAt}</p>
-      </div>
-      <button type="button" className="button__add-card">
-        <BsFillCartPlusFill />
-      </button>
-    </section>
+    <motion.div whileHover={{ scale: 1.05 }}>
+      <ProductCardContainer>
+        <CardImage src={photo} alt="product" />
+        <CardInfos>
+          <CardContainer>
+            <CardTitle>{name}</CardTitle>
+            <CardPrice> R$ {price.toFixed(2)}</CardPrice>
+          </CardContainer>
+          <CardDescription>{description}</CardDescription>
+        </CardInfos>
+        <ButtonAddCard onClick={handleAddCart }>
+          <BsFillCartPlusFill />  Comprar
+        </ButtonAddCard>
+      </ProductCardContainer>
+    </motion.div>
   );
 }
 
