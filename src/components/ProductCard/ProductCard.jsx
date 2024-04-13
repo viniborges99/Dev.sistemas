@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { BsFillCartPlusFill } from 'react-icons/bs';
 import { motion } from 'framer-motion';
+import formatCurrency from '../format/Format';
 import{ProductCardContainer,
   CardContainer,
   CardImage,
@@ -31,7 +32,7 @@ function ProductCard({ data }) {
         <CardInfos>
           <CardContainer>
             <CardTitle>{name}</CardTitle>
-            <CardPrice> R$ {price.toFixed(2)}</CardPrice>
+            <CardPrice> {formatCurrency(price,'BRL')}</CardPrice>
           </CardContainer>
           <CardDescription>{description}</CardDescription>
         </CardInfos>
