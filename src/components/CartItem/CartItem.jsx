@@ -1,34 +1,32 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { CiCircleRemove } from 'react-icons/ci';
 import PropTypes from 'prop-types';
-import { useContext } from 'react';
 import AppContext from '../context/AppContext';
 import formatCurrency from '../format/Format';
-import './CartItem.css';
+import Quant from '../Contador/Quant';
+import {ButtonRemoveItem, CartItemContent, CartItemPrice, QuantCar, CartItemTitle, CartItemImage, CartItemContainer} from './styles';
 
 function CartItem({ data }) {
-  const {  id, name, photo, price } = data;
+  const { id, name, photo, price } = data;
   const { cartItems, setCartItems } = useContext(AppContext);
 
   const handleRemoveItem = () => {
-    const updatedCartItems = cartItems.filter((item)=> item.id != id );
+    const updatedCartItems = cartItems.filter(item => item.id !== id);
     setCartItems(updatedCartItems);
   };
-  
 
   return (
-    <section className="cart-item">
-      <img src={photo} alt="imagem do produto" className="cart-item-image" />
-      <div className="cart-item-content">
-        <p className="cart-item-title">{name}</p>
-        <p className="cart-item-price">{formatCurrency(price,'BRL')}</p>
-        <button type="button" className="button__remove-item" onClick={handleRemoveItem}>
+    <CartItemContainer>
+      <CartItemImage src={photo} alt="imagem do produto" />
+      <CartItemContent>
+        <CartItemTitle>{name}</CartItemTitle>
+        <QuantCar><Quant/></QuantCar>
+        <CartItemPrice>{formatCurrency(price, 'BRL')}</CartItemPrice>
+        <ButtonRemoveItem type="button" onClick={handleRemoveItem}>
           <CiCircleRemove />
-        </button>
-
-      </div>
-    </section>
-
+        </ButtonRemoveItem>
+      </CartItemContent>
+    </CartItemContainer>
   );
 }
 
@@ -43,5 +41,3 @@ CartItem.propTypes = {
 
 export default CartItem;
 
-
-// colocar a quantidade depois do titulo do produto

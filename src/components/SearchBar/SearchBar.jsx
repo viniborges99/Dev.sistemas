@@ -1,27 +1,31 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { BsSearch } from 'react-icons/bs';
-import './SearchBar.css';
+import { SearchButton, SearchInput, SearchBarContainer } from './styles';
 
-function SearchBar(){
-
+function SearchBar() {
   const [searchValue, setSearchValue] = useState('');
 
+  const handleSearch = (e) => {
+    e.preventDefault();
+    // Aqui você pode adicionar a lógica para lidar com a busca
+    console.log('Searching for:', searchValue);
+  };
 
-  return(
-    <form className="search-bar">
-      
-      <input type="search" 
+  return (
+    <SearchBarContainer onSubmit={handleSearch}>
+      <SearchInput
+        type="search"
         value={searchValue}
-        placeholder="Buscar produtos" 
-        className="search__input"
-        onChange={({target}) =>setSearchValue(target.value)}
+        placeholder="Buscar produtos"
+        onChange={(e) => setSearchValue(e.target.value)}
         required
       />
-      <button type="submit" className="search__button">
-        <BsSearch/>
-      </button>
-          
-    </form>
+      <SearchButton type="submit">
+        <BsSearch />
+      </SearchButton>
+    </SearchBarContainer>
   );
 }
+
 export default SearchBar;
+

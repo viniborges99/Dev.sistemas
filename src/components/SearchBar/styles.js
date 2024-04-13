@@ -1,4 +1,6 @@
-.search-bar{
+import styled from 'styled-components';
+
+export const SearchBarContainer = styled.div`
   display: flex;
   background-color: white;
   width: 100%;
@@ -7,9 +9,9 @@
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
   gap: 13px;
   padding-right: 13px;
-  
-}
-.search__input{
+`;
+
+export const SearchInput = styled.input`
   padding: 13px;
   flex-grow: 1;
   border: none;
@@ -17,8 +19,9 @@
   font-size: 0.8rem;
   font-weight: 500;
   border-right: 1px solid #ddd;
-}
-.search__button{
+`;
+
+export const SearchButton = styled.button`
   background-color: none;
   border: none;
   font-size: 1rem;
@@ -28,4 +31,4 @@
   color: #333;
   background-color: white;
   cursor: pointer;
-}
+`;

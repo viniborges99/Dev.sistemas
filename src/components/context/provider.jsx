@@ -7,6 +7,7 @@ function Provider({ children }) {
 
   const [cartItems, setCartItems] = useState([]);
   const [isCartVisible, setIsCartVisible] = useState(false);
+  const [quantity, setQuantity] = useState(1);
 
   const value = {
   
@@ -14,7 +15,9 @@ function Provider({ children }) {
     cartItems,
     setCartItems,
     isCartVisible,
-    setIsCartVisible
+    setIsCartVisible,
+    quantity,
+    setQuantity
 
     
 

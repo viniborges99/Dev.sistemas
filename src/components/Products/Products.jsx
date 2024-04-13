@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './Products.css';
+import { ProductsContainer } from './styles';
 import fetchProducts from '../../api/fetchProducts';
 import ProductCard from '../ProductCard/ProductCard';
 import Loading from '../Loading/Loading';
@@ -9,15 +9,12 @@ function Products() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // tempo de carregamento de 2 segundos
     const delay = setTimeout(() => {
       fetchProducts(1, 10, 'id', 'DESC').then((response) => {
-        const productsWithNumberPrices = response.map((product) => {
-          return {
-            ...product,
-            price: parseFloat(product.price),
-          };
-        });
+        const productsWithNumberPrices = response.map((product) => ({
+          ...product,
+          price: parseFloat(product.price),
+        }));
         setProducts(productsWithNumberPrices);
         setLoading(false);
       });
@@ -27,16 +24,22 @@ function Products() {
   }, []);
 
   return (
-    (loading && <Loading/>) || (
-      <section className="products container" >     
-        {
-          products.map((product) => <ProductCard key={product.id} data={product} />)
-        }
-      </section>
-    )
+    <>
+      {loading ? (
+        <Loading />
+      ) : (
+        <ProductsContainer className="container">
+          {products.map((product) => (
+            <ProductCard key={product.id} data={product} />
+          ))}
+        </ProductsContainer>
+      )}
+    </>
   );
 }
 
 export default Products;
+
+
 
 

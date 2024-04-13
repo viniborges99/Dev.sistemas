@@ -1,19 +1,21 @@
 import React from 'react';
 import SearchBar from '../SearchBar/SearchBar';
-import './Header.css';
+
 import CartButton from '../CartButton/CartButton';
+import {HeaderContainer,Container,Logo} from './styles';
 
-function  Header(){
-  return(
-    <header className="header">
-      <div className="container">
-        <h2><span>MKS</span> sistemas</h2>
-        <SearchBar/>
-        <CartButton/>
-        
-      </div>
-
-    </header> 
+function Header() {
+  return (
+    <HeaderContainer>
+      <Container>
+        <Logo>
+          <span>MKS</span> sistemas
+        </Logo>
+        <SearchBar />
+        <CartButton />
+      </Container>
+    </HeaderContainer>
   );
 }
+
 export default Header;
