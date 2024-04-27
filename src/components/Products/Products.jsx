@@ -1,26 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { ProductsContainer } from './styles';
 import fetchProducts from '../../api/fetchProducts';
 import ProductCard from '../ProductCard/ProductCard';
 import Loading from '../Loading/Loading';
+import AppContext from '../context/AppContext';
 
 function Products() {
-  const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const { products, setProducts, loading, setLoading } = useContext(AppContext);
 
   useEffect(() => {
-    const delay = setTimeout(() => {
-      fetchProducts(1, 10, 'id', 'DESC').then((response) => {
-        const productsWithNumberPrices = response.map((product) => ({
-          ...product,
-          price: parseFloat(product.price),
-        }));
-        setProducts(productsWithNumberPrices);
-        setLoading(false);
-      });
-    }, 2000);
-
-    return () => clearTimeout(delay);
+    fetchProducts('iphone').then((response) => {
+      setProducts(response);
+      setLoading(false);
+    });
   }, []);
 
   return (
@@ -29,9 +21,8 @@ function Products() {
         <Loading />
       ) : (
         <ProductsContainer className="container">
-          {products.map((product) => (
-            <ProductCard key={product.id} data={product} />
-          ))}
+          {products.map((product) => <ProductCard key={product.id} data={product} />)}
+          
         </ProductsContainer>
       )}
     </>
@@ -39,6 +30,7 @@ function Products() {
 }
 
 export default Products;
+
 
 
 

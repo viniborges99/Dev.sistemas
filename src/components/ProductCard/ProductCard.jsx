@@ -10,31 +10,28 @@ import{ProductCardContainer,
   CardPrice,
   CardTitle,
   ButtonAddCard,
-  CardDescription} from './styles.js';
+} from './styles.js';
 import AppContext from '../context/AppContext.js';
 
 
 function ProductCard({ data }) {
-  const { name, photo,  description } = data;
-  const price = parseFloat(data.price);
+  const { title, thumbnail, price} = data;
 
   const {cartItems, setCartItems} = useContext(AppContext);
 
-  const handleAddCart = () => {
-    setCartItems([...cartItems, data]);
-  };
+  const handleAddCart = () => setCartItems([ ...cartItems, data ]);
   
 
   return (
     <motion.div whileHover={{ scale: 1.05 }}>
       <ProductCardContainer>
-        <CardImage src={photo} alt="product" />
+        <CardImage src={thumbnail.replace(/\w\.jpg/gi, 'W.jpg')} alt="product" />
         <CardInfos>
           <CardContainer>
-            <CardTitle>{name}</CardTitle>
+            <CardTitle>{title}</CardTitle>
             <CardPrice> {formatCurrency(price,'BRL')}</CardPrice>
           </CardContainer>
-          <CardDescription>{description}</CardDescription>
+          
         </CardInfos>
         <ButtonAddCard onClick={handleAddCart }>
           <BsFillCartPlusFill />  Comprar
@@ -46,15 +43,12 @@ function ProductCard({ data }) {
 
 ProductCard.propTypes = {
   data: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    photo: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    thumbnail: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
-    brand: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    id: PropTypes.number.isRequired,
-    updatedAt: PropTypes.string.isRequired,
   }).isRequired,
 };
+
 
 export default ProductCard;
 

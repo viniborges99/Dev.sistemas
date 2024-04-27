@@ -9,7 +9,7 @@ function Header() {
     <HeaderContainer>
       <Container>
         <Logo>
-          <span>MKS</span> sistemas
+          <span>DEV.</span> Sistemas
         </Logo>
         <SearchBar />
         <CartButton />

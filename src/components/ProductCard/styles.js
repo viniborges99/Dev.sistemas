@@ -36,7 +36,8 @@ export const CardPrice = styled.p`
   font-weight: 700;
   line-height: 15px;
   display: flex;
-  margin-bottom: 10px;
+  align-items: center;
+  margin-bottom: 30px;
   color: white;
   background-color: black;
   border: none;

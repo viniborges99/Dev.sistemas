@@ -1,31 +1,43 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { BsSearch } from 'react-icons/bs';
-import { SearchButton, SearchInput, SearchBarContainer } from './styles';
+
+import './SearchBar.css';
+import fetchProducts from '../../api/fetchProducts';
+import AppContext from '../context/AppContext';
 
 function SearchBar() {
+
+  const { setProducts, setLoading } = useContext(AppContext);
   const [searchValue, setSearchValue] = useState('');
 
-  const handleSearch = (e) => {
-    e.preventDefault();
-    // Aqui você pode adicionar a lógica para lidar com a busca
-    console.log('Searching for:', searchValue);
+  const handleSearch = async (event) => {
+    event.preventDefault();
+    setLoading(true);
+
+    const products = await fetchProducts(searchValue);
+
+    setProducts(products);
+    setLoading(false);
+    setSearchValue('');
   };
 
   return (
-    <SearchBarContainer onSubmit={handleSearch}>
-      <SearchInput
+    <form className="search-bar" onSubmit={handleSearch}>
+      
+      <input
         type="search"
         value={searchValue}
         placeholder="Buscar produtos"
-        onChange={(e) => setSearchValue(e.target.value)}
+        className="search__input"
+        onChange={ ({ target }) => setSearchValue(target.value) }
         required
       />
-      <SearchButton type="submit">
+
+      <button type="submit" className="search__button">
         <BsSearch />
-      </SearchButton>
-    </SearchBarContainer>
+      </button>
+    </form>
   );
 }
 
 export default SearchBar;
-

@@ -22,21 +22,14 @@ export const CartItemTitle = styled.p`
   margin-bottom: 8px;
 `;
 
-export const QuantCar = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
-  width: 79px;
-  height: 30px;
-  background: white;
-  border: 1px solid #bfbfbf;
-  border-radius: 5px;
-`;
 
 export const CartItemPrice = styled.p`
   font-size: 14px;
   font-weight: 700;
+  background: black;
+  padding: 10px;
+  border-radius: 5px;
+  color: white;
 `;
 
 export const CartItemContent = styled.div`
