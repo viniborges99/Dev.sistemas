@@ -26,4 +26,7 @@ export const Logo = styled.h2`
     font-weight: 600;
     line-height: 19px;
   }
+  @media (max-width: 600px) {
+    display: none;
+  }
 `;
